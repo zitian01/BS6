@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Conference Captioning</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Create a new Stream</h1>
+    <input type="text" id="streamName" placeholder="Enter stream name">
+    <button onclick="createStream()">Create</button>
+    <script>
+        function createStream() {
+            var streamName = $("#streamName").val();
+            $.ajax({
+                url: '/api/stream',
+                type: 'POST',
+                data: JSON.stringify(streamName),
+                contentType: 'application/json; charset=utf-8',
+                success: function(response) {
+                    alert(response);
+                },
+                error: function(error) {
+                    alert("Error: " + error.responseText);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
